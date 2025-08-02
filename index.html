@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELL'S PARADISE - Island of Horrors</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;900&display=swap');
+
+        :root {
+            --dark: #0a0a0a;
+            --blood: #8a0303;
+            --jade: #00a86b;
+            --white: #ffffff;
+            --tan: #d2b48c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), url('https://wallpapercave.com/wp/wp11744418.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, var(--dark) 70%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            color: var(--blood);
+            text-shadow: 0 0 20px rgba(138, 3, 3, 0.5);
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--blood), var(--jade));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--jade), var(--blood));
+            color: var(--white);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2909/2909553.png') no-repeat center center/contain;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(138, 3, 3, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(138, 3, 3, 0.8), 0 0 30px rgba(138, 3, 3, 0.6);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--blood);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--blood), var(--jade));
+        }
+
+        .summary {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 50px;
+            border-left: 5px solid var(--blood);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+
+        .summary:hover {
+            transform: perspective(1000px) rotateY(0deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .summary h3 {
+            font-size: 2rem;
+            color: var(--blood);
+            margin-bottom: 1rem;
+        }
+
+        .summary p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .season {
+            margin-bottom: 40px;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .character-card:hover {
+            transform: perspective(1000px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .character-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .character-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .character-info {
+            padding: 20px;
+        }
+
+        .character-info h3 {
+            font-size: 1.5rem;
+            color: var(--blood);
+            margin-bottom: 10px;
+        }
+
+        .character-info p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--tan);
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--blood);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .parallax {
+            background: url('https://wallpapercave.com/wp/wp11744427.jpg') fixed;
+            background-size: cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.7);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .parallax-content h2 {
+            color: var(--white);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .parallax-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .moment-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid rgba(138, 3, 3, 0.3);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .moment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--blood);
+        }
+
+        .moment-info h3 {
+            font-size: 1.5rem;
+            color: var(--blood);
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .moment-info h3::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 1.8rem;
+        }
+
+        .moment-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .moment-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--jade);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+            .tagline {
+                font-size: 1.5rem;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .moments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .flower-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .flower-2 {
+            top: 60%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+        .flower-3 {
+            top: 30%;
+            left: 60%;
+            animation-delay: 2s;
+        }
+        .flower-4 {
+            top: 70%;
+            left: 30%;
+            animation-delay: 1.5s;
+        }
+        .flower-5 {
+            top: 80%;
+            left: 70%;
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+
+        <div class="hero-content">
+            <h1>HELL'S PARADISE</h1>
+            <p class="tagline>THE ISLAND THAT PROMISES IMMORTALITY... AND DEATH</p>
+            <a href="#key-moments" class="cta-button">ENTER THE ISLAND</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="about">
+            <h2>THE SHINOBI'S NIGHTMARE</h2>
+            <div class="summary">
+                <h3>WHAT IS HELL'S PARADISE?</h3>
+                <p>In the Edo period of Japan, the most vicious criminals are offered a chance at pardon if they can retrieve the <span class="highlight">Elixir of Life</span> from a mysterious island known as <span class="highlight">Shinsenkyo</span>. Gabimaru the Hollow, a legendary ninja assassin, is one such criminal sent to this island that promises immortality... and death.</p>
+                <p>Accompanied by his executioner Yamada Asaemon Sagiri, Gabimaru discovers the island is inhabited by monstrous creatures and former explorers who have been horrifically transformed. The search for the elixir becomes a brutal fight for survival against the island's nightmarish inhabitants and the criminals' own dark natures.</p>
+                <p>Based on the hit manga by Yuji Kaku, Hell's Paradise blends <span class="highlight">historical action</span> with <span class="highlight">body horror</span> in a deadly battle royale where only the strongest—or most cunning—will survive.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">8.5</div>
+                    <div class="stat-label">IMDB Rating</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Episodes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Criminals</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Guaranteed Survivors</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="arcs">
+            <h2>KEY ARCS</h2>
+            <div class="summary">
+                <p>Hell's Paradise unfolds across several intense story arcs as the criminals explore the deadly island. Some of the most memorable include:</p>
+
+                <div class="character-grid">
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>The Arrival</h3>
+                            <p>The criminals first set foot on Shinsenkyo, immediately encountering the island's deadly flora and fauna that defy nature.</p>
+                        </div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>The Tensen</h3>
+                            <p>The group encounters the island's god-like rulers, beings of immense power who view humans as mere specimens.</p>
+                        </div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>Gabimaru's Past</h3>
+                            <p>Flashbacks reveal Gabimaru's brutal upbringing as a ninja and his relationship with his wife that humanizes the "Hollow" man.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Through these harrowing trials, Hell's Paradise explores themes of <span class="highlight">redemption, survival, and what it means to be human</span> in the face of unimaginable horror.</p>
+            </div>
+        </section>
+
+        <section id="characters">
+            <h2>MAIN CHARACTERS</h2>
+            <div class="summary">
+                <p>The expedition to Shinsenkyo brings together deadly criminals and their executioner minders in an uneasy alliance. The main characters include:</p>
+
+                <div class="character-grid">
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>Gabimaru</h3>
+                            <p>Known as "Gabimaru the Hollow," this legendary ninja assassin claims to want nothing more than to return to his wife, but his brutal skills suggest otherwise.</p>
+                        </div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>Sagiri</h3>
+                            <p>Yamada Asaemon Sagiri is Gabimaru's executioner and minder, a skilled swordswoman struggling with the morality of her duties.</p>
+                        </div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>The Tensen</h3>
+                            <p>Mysterious god-like beings who rule Shinsenkyo, capable of manipulating flesh and Tao energy with terrifying precision.</p>
+                        </div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-info">
+                            <h3>Yuzuriha</h3>
+                            <p>A female ninja and master of disguise whose cheerful demeanor hides a deadly killer with her own agenda.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>These characters form the core of a brutal survival story where <span class="highlight">trust is as dangerous as the island itself</span>.</p>
+            </div>
+        </section>
+
+        <section id="key-moments">
+            <h2>ICONIC HELL'S PARADISE MOMENTS</h2>
+            <div class="moments-grid">
+                <div class="moment-card">
+                    <div class="moment-number">1</div>
+                    <div class="moment-info">
+                        <h3>Gabimaru's First Transformation</h3>
+                        <p>The shocking moment when Gabimaru first taps into his full power, revealing the terrifying potential of Tao energy manipulation.</p>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-number">2</div>
+                    <div class="moment-info">
+                        <h3>Sagiri's Resolve</h3>
+                        <p>Sagiri's emotional breakdown and subsequent reaffirmation of her purpose, showing her growth from uncertain executioner to determined warrior.</p>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-number">3</div>
+                    <div class="moment-info">
+                        <h3>The First Tensen Encounter</h3>
+                        <p>The brutal first battle against one of the Tensen, demonstrating their overwhelming power and the horrific transformations they inflict.</p>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-number">4</div>
+                    <div class="moment-info">
+                        <h3>Gabimaru's Memories</h3>
+                        <p>The heartbreaking revelation of Gabimaru's past and his relationship with his wife, showing the humanity beneath his "Hollow" persona.</p>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-number">5</div>
+                    <div class="moment-info">
+                        <h3>The Flower Field Battle</h3>
+                        <p>The visually stunning battle in a field of deadly flowers where combatants must fight while resisting the flowers' hallucinogenic pollen.</p>
+                    </div>
+                </div>
+                <div class="moment-card">
+                    <div class="moment-number">6</div>
+                    <div class="moment-info">
+                        <h3>The Opening Sequence</h3>
+                        <p>The mesmerizing opening theme featuring the song "WORK" by Millennium Parade, perfectly capturing the series' blend of beauty and brutality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const flowers = document.querySelectorAll('.flower');
+            flowers.forEach(flower => {
+                const speed = flower.getAttribute('data-speed') || 20;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                flower.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        for (let i = 0; i < 5; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.top = Math.random() * 100 + 'vh';
+            flower.style.width = (Math.random() * 30 + 20) + 'px';
+            flower.style.height = flower.style.width;
+            flower.style.animationDelay = Math.random() * 5 + 's';
+            flower.setAttribute('data-speed', Math.random() * 30 + 10);
+            document.body.appendChild(flower);
+        }
+    </script>
+</body>
+
+</html>
